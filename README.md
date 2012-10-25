@@ -14,7 +14,7 @@
         const NEPTUNE = 7;
     }
 
-    echo Planets::EARTH;                      // 2
-    foreach (Planets::toArray() as $planet) {
-        echo $planet;                         // MERCURY, VENUS, EARTH, etc.
+    echo Planets::EARTH;                              // 2
+    foreach (Planets::toArray() as $planet => $num) {
+        echo $planet;                                 // MERCURY, VENUS, EARTH, etc.
     };
