@@ -1,3 +1,5 @@
+[![Build Status](https://secure.travis-ci.org/dalanhurst/php-enum.png)](http://travis-ci.org/dalanhurst/php-enum)
+
 #PHP 5.3 Enum Implementation
 
 ##Basic Usage:
