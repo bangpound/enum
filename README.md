@@ -2,19 +2,36 @@
 
 ##Basic Usage:
 
-    class Planets extends \RobotSnowfall\Enum
+    use RobotSnowfall\Enum;
+
+    class Planet extends Enum
     {
-        const MERCURY = 0;
-        const VENUS = 1;
-        const EARTH = 2;
-        const MARS = 3;
-        const JUPITER = 4;
-        const SATURN = 5;
-        const URANUS = 6;
-        const NEPTUNE = 7;
+        const MERCURY = 1;
+        const VENUS = 2;
+        const EARTH = 3;
+        const MARS = 4;
+        const JUPITER = 5;
+        const SATURN = 6;
+        const URANUS = 7;
+        const NEPTUNE = 8;
+
+        /**
+         * @return int
+         */
+        public function getPositionFromSun() {
+            return $this->_value;
+        }
+
+        /**
+         * @return string
+         */
+        public function capitalize() {
+            return ucfirst(strtolower($this->_name));
+        }
+
     }
 
-    echo Planets::EARTH;                              // 2
-    foreach (Planets::toArray() as $planet => $num) {
-        echo $planet;                                 // MERCURY, VENUS, EARTH, etc.
-    };
+    echo Planet::EARTH.PHP_EOL;                                // 3
+    echo implode(', ', array_keys(Planet::toArray())).PHP_EOL; // 'MERCURY, VENUS, EARTH, ...'
+    echo Planet::EARTH().PHP_EOL;                              // '3'
+    echo Planet::EARTH()->capitalize().PHP_EOL;                // 'Earth'

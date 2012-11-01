@@ -25,20 +25,56 @@ namespace RobotSnowfall;
 abstract class Enum
 {
     /**
-     * Enum->toArray() using reflection and late static binding
-     *
+     * @var mixed The enumeration's name
+     */
+    protected $_name;
+
+    /**
+     * @var mixed The enumeration's value
+     */
+    protected $_value;
+
+    /**
+     * @param mixed $value
+     */
+    protected function __construct($name, $value)
+    {
+        if (!is_scalar($value)) {
+            throw new \BadMethodCallException('Enum values must be scalar');
+        }
+        $this->_name = $name;
+        $this->_value = $value;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return (string) $this->_value;
+    }
+
+    /**
      * @return array
      */
-    final public static function toArray()
+    public static function toArray()
     {
         $reflection = new \ReflectionClass(get_called_class());
         return $reflection->getConstants();
     }
 
     /**
-     * Disable Construction
+     * @static
+     *
+     * @param string $name      The name of the enumeration
+     * @param array  $arguments Ignored
+     *
+     * @return Enum
      */
-    final protected function __construct()
-    {
+    public static function __callStatic($name, $arguments) {
+        $c = static::toArray();
+        if (in_array($name, array_keys($c))) {
+            return new static($name, $c[$name]);
+        }
     }
 }
