@@ -31,7 +31,7 @@
 
     }
 
-    echo Planet::EARTH.PHP_EOL;                                // 3
-    echo implode(', ', array_keys(Planet::toArray())).PHP_EOL; // 'MERCURY, VENUS, EARTH, ...'
-    echo Planet::EARTH().PHP_EOL;                              // '3'
-    echo Planet::EARTH()->capitalize().PHP_EOL;                // 'Earth'
+    echo Planet::EARTH;                                // 3
+    echo implode(', ', array_keys(Planet::toArray())); // 'MERCURY, VENUS, EARTH, ...'
+    echo Planet::EARTH();                              // '3'
+    echo Planet::EARTH()->capitalize();                // 'Earth'
