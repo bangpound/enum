@@ -55,6 +55,8 @@ abstract class Enum
     }
 
     /**
+     * @static
+     *
      * @return array
      */
     public static function toArray()
@@ -66,15 +68,30 @@ abstract class Enum
     /**
      * @static
      *
+     * @param string $value The value of the enumeration
+     *
+     * @return Enum
+     */
+    public static function get($value)
+    {
+        $e = static::toArray();
+        if (in_array($value, $e)) {
+            return new static(array_search($value, $e), $value);
+        }
+    }
+
+    /**
+     * @static
+     *
      * @param string $name      The name of the enumeration
      * @param array  $arguments Ignored
      *
      * @return Enum
      */
     public static function __callStatic($name, $arguments) {
-        $c = static::toArray();
-        if (in_array($name, array_keys($c))) {
-            return new static($name, $c[$name]);
+        $e = static::toArray();
+        if (in_array($name, array_keys($e))) {
+            return new static($name, $e[$name]);
         }
     }
 }

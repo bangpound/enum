@@ -49,9 +49,15 @@ class EnumTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(8, $planets['NEPTUNE']);
 	}
 
-    public function testCanGetEnumObject()
+    public function testCanGetEnumObjectByName()
     {
         $this->assertInstanceOf('RobotSnowfall\Test\Planet', Planet::EARTH());
+    }
+
+    public function testCanGetEnumObjectByValue()
+    {
+        $earth = Planet::EARTH;
+        $this->assertInstanceOf('RobotSnowfall\Test\Planet', Planet::get($earth));
     }
 
     public function testCanCastEnumObjectToString()
